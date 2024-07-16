@@ -12,6 +12,8 @@ spec:
   - hosts:
     - notickets.ru
     - www.notickets.ru
+    - notickets.online
+    - www.notickets.online
     secretName: notickets-tls
   rules:
   - host: notickets.ru
@@ -34,5 +36,24 @@ spec:
             name: ingress-nginx-controller
             port:
               number: 80
-
+  - host: notickets.online  # Добавьте это правило
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ingress-nginx-controller
+            port:
+              number: 80
+  - host: www.notickets.online  # Добавьте это правило
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ingress-nginx-controller
+            port:
+              number: 80
 
