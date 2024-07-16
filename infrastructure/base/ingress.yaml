@@ -11,6 +11,7 @@ spec:
   tls:
   - hosts:
     - notickets.ru
+    - www.notickets.ru
     secretName: notickets-tls
   rules:
   - host: notickets.ru
