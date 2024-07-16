@@ -4,4 +4,5 @@ resources:
   - ingress-nginx/namespace.yaml
   - ingress-nginx/helmrelease.yaml
   - cert-manager/namespace.yaml
+  - cert-manager/clusterissuer.yaml
   - cert-manager/helmrelease.yaml
