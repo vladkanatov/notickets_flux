@@ -24,5 +24,15 @@ spec:
             name: ingress-nginx-controller
             port:
               number: 80
+  - host: www.notickets.ru  # Добавьте это правило
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ingress-nginx-controller
+            port:
+              number: 80
 
 
