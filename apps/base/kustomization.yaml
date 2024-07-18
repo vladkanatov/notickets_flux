@@ -6,3 +6,4 @@ resources:
   - cert-manager/namespace.yaml
   - cert-manager/clusterissuer.yaml
   - cert-manager/helmrelease.yaml
+  - weave-gitops-dashboard.yaml
