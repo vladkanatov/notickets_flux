@@ -10,4 +10,4 @@ spec:
     - protocol: TCP
       port: 3000
       targetPort: 3000
-  type: LoadBalancer  # Используйте NodePort или ClusterIP в зависимости от вашей конфигурации
+  type: ClusterIP # Используйте NodePort или ClusterIP в зависимости от вашей конфигурации
