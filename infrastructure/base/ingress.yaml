@@ -23,7 +23,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: frontend-service
+            name: frontend-service.notickets
             port:
               number: 80
   - host: www.notickets.ru  # Добавьте это правило
@@ -33,7 +33,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: frontend-service
+            name: frontend-service.notickets
             port:
               number: 80
   - host: notickets.online  # Добавьте это правило
@@ -43,7 +43,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: frontend-service
+            name: frontend-service.notickets
             port:
               number: 80
   - host: www.notickets.online  # Добавьте это правило
@@ -53,7 +53,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: frontend-service
+            name: frontend-service.notickets
             port:
               number: 80
 
