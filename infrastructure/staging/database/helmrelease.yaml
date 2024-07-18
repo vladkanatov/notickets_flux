@@ -30,12 +30,6 @@ spec:
       password: 132465-Cs
       replicationPassword: 132465-Cs
     primary:
-      nodeSelector:
-        environment: service
-      tolerations:
-      - key: service
-        operator: Equal
-        effect: NoSchedule
       persistence:
         enabled: true
         size: 6Gi
