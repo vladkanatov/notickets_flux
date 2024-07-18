@@ -4,4 +4,4 @@ resources:
   - ../../apps/base
   # - ../../apps/staging
   - ../../infrastructure/base
-  # - ../../infrastructure/staging
+  - ../../infrastructure/staging
