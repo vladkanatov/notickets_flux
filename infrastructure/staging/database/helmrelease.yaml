@@ -40,14 +40,10 @@ spec:
         limits:
           memory: 1Gi
           cpu: 500m
-      extraVolumes:
-        - name: mariadb-config
-          configMap:
-            name: mariadb-config
-      extraVolumeMounts:
-        - name: mariadb-config
-          mountPath: /opt/bitnami/mariadb/conf/my.cnf
-          subPath: my.cnf
+      configuration: |
+        [mysqld]
+        character-set-server = utf8mb4
+        collation-server = utf8mb4_general_ci
       livenessProbe:
         enabled: false
     secondary:
@@ -61,13 +57,9 @@ spec:
         limits:
           memory: 1Gi
           cpu: 500m
-      extraVolumes:
-        - name: mariadb-config
-          configMap:
-            name: mariadb-config
-      extraVolumeMounts:
-        - name: mariadb-config
-          mountPath: /opt/bitnami/mariadb/conf/my.cnf
-          subPath: my.cnf
+      configuration: |
+        [mysqld]
+        character-set-server = utf8mb4
+        collation-server = utf8mb4_general_ci
       livenessProbe:
         enabled: false
