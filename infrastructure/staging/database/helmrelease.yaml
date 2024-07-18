@@ -30,6 +30,12 @@ spec:
       password: 132465-Cs
       replicationPassword: 132465-Cs
     primary:
+      nodeSelector:
+        environment: service
+      tolerations:
+      - key: service
+        operator: Equal
+        effect: NoSchedule
       persistence:
         enabled: true
         size: 6Gi
@@ -40,15 +46,14 @@ spec:
         limits:
           memory: 1Gi
           cpu: 500m
-      configuration: |
-        [mysqld]
-        character-set-server = utf8mb4
-        collation-server = utf8mb4_general_ci
+      extraVolumeMounts:
+        - name: mariadb-config
+          mountPath: /opt/bitnami/mariadb/conf/my.cnf
+          subPath: my.cnf
     secondary:
       persistence:
         enabled: true
         size: 4Gi
-        storageClass: yc-network-hdd
       resources:
         requests:
           memory: 512Mi
@@ -56,7 +61,11 @@ spec:
         limits:
           memory: 1Gi
           cpu: 500m
-      configuration: |
-        [mysqld]
-        character-set-server = utf8mb4
-        collation-server = utf8mb4_general_ci
+      extraVolumeMounts:
+        - name: mariadb-config
+          mountPath: /opt/bitnami/mariadb/conf/my.cnf
+          subPath: my.cnf
+  extraVolumes:
+    - name: mariadb-config
+      configMap:
+        name: mariadb-config
