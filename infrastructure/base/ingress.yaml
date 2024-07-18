@@ -24,6 +24,7 @@ spec:
         backend:
           service:
             name: frontend-service
+            namespace: notickets
             port:
               number: 3000
   - host: www.notickets.ru  # Добавьте это правило
@@ -34,6 +35,7 @@ spec:
         backend:
           service:
             name: frontend-service
+            namespace: notickets
             port:
               number: 3000
   - host: notickets.online  # Добавьте это правило
@@ -44,6 +46,7 @@ spec:
         backend:
           service:
             name: frontend-service
+            namespace: notickets
             port:
               number: 3000
   - host: www.notickets.online  # Добавьте это правило
@@ -54,6 +57,7 @@ spec:
         backend:
           service:
             name: frontend-service
+            namespace: notickets
             port:
               number: 3000
 
