@@ -46,6 +46,10 @@ spec:
         limits:
           memory: 1Gi
           cpu: 500m
+      extraVolumes:
+        - name: mariadb-config
+          configMap:
+            name: mariadb-config
       extraVolumeMounts:
         - name: mariadb-config
           mountPath: /opt/bitnami/mariadb/conf/my.cnf
@@ -61,11 +65,11 @@ spec:
         limits:
           memory: 1Gi
           cpu: 500m
+      extraVolumes:
+        - name: mariadb-config
+          configMap:
+            name: mariadb-config
       extraVolumeMounts:
         - name: mariadb-config
           mountPath: /opt/bitnami/mariadb/conf/my.cnf
           subPath: my.cnf
-  extraVolumes:
-    - name: mariadb-config
-      configMap:
-        name: mariadb-config
