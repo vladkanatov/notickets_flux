@@ -9,7 +9,7 @@ spec:
       initContainers:
       - name: wait-for-mariadb
         image: alpine:latest
-        command: ["sh", "-c", "until nc -z -v -w30 mariadb-cluster-primary.mariadb.svc.cluster.local 3306; do echo 'Waiting for MariaDB cluster to start...'; sleep 5; done"]
+        command: ["sh", "-c", "echo 'Checking MariaDB connection...'; while ! nc -z -v -w30 mariadb-cluster-primary.mariadb.svc.cluster.local 3306; do echo 'Waiting for MariaDB cluster to start...'; sleep 5; done; echo 'MariaDB is up!'"]
       containers:
       - name: mysql-client
         image: lon8/notickets_initdb:1.3
