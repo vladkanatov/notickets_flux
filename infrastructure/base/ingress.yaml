@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: notickets-ingress
-  namespace: default
+  namespace: notickets
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/rewrite-target: /
@@ -23,7 +23,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: frontend-service.notickets
+            name: frontend-service
             port:
               number: 80
   - host: www.notickets.ru  # Добавьте это правило
@@ -33,7 +33,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: frontend-service.notickets
+            name: frontend-service
             port:
               number: 80
   - host: notickets.online  # Добавьте это правило
@@ -43,7 +43,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: frontend-service.notickets
+            name: frontend-service
             port:
               number: 80
   - host: www.notickets.online  # Добавьте это правило
@@ -53,7 +53,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: frontend-service.notickets
+            name: frontend-service
             port:
               number: 80
 
