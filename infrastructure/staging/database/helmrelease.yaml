@@ -49,15 +49,7 @@ spec:
           mountPath: /opt/bitnami/mariadb/conf/my.cnf
           subPath: my.cnf
       livenessProbe:
-        exec:
-          command:
-            - "/opt/bitnami/mariadb/bin/mariadb-admin"
-            - "ping"
-            - "--host=localhost"
-            - "--user=root"
-            - "--password=132465-Cs"
-        initialDelaySeconds: 30
-        periodSeconds: 10
+        enabled: false
     secondary:
       persistence:
         enabled: true
@@ -78,12 +70,4 @@ spec:
           mountPath: /opt/bitnami/mariadb/conf/my.cnf
           subPath: my.cnf
       livenessProbe:
-        exec:
-          command:
-            - "/opt/bitnami/mariadb/bin/mariadb-admin"
-            - "ping"
-            - "--host=localhost"
-            - "--user=root"
-            - "--password=132465-Cs"
-        initialDelaySeconds: 30
-        periodSeconds: 10
+        enabled: false
