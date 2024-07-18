@@ -8,12 +8,6 @@ spec:
     spec:
       template:
         spec:
-          nodeSelector:
-            environment: app
-          tolerations:
-          - key: app
-            operator: Equal
-            effect: NoSchedule
           containers:
           - name: bileter-ru
             image: lon8/bileter_ru:latest

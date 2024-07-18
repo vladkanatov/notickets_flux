@@ -13,12 +13,6 @@ spec:
       labels:
         app: frontend-app
     spec:
-      nodeSelector:
-        environment: app
-      tolerations:
-      - key: app
-        operator: Equal
-        effect: NoSchedule
       containers:
       - name: frontend-container
         image: lon8/notickets_front:latest
