@@ -32,7 +32,23 @@ spec:
     primary:
       persistence:
         enabled: true
-        size: 8Gi
+        size: 6Gi
+      resources:
+        requests:
+          memory: 512Mi
+          cpu: 200m
+        limits:
+          memory: 1Gi
+          cpu: 500m
+      configuration: |
+        [mysqld]
+        character-set-server = utf8mb4
+        collation-server = utf8mb4_general_ci
+    secondary:
+      persistence:
+        enabled: true
+        size: 4Gi
+        storageClass: yc-network-hdd
       resources:
         requests:
           memory: 512Mi
