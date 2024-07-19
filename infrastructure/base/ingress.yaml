@@ -23,7 +23,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: frontend-service
+            name: test-service
             port:
               number: 80
   - host: www.notickets.ru  # Добавьте это правило
