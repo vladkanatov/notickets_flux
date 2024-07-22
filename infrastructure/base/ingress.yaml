@@ -18,7 +18,7 @@ spec:
   - host: notickets.ru
     http:
       paths:
-      - path: /api/*
+      - path: /api/
         pathType: Prefix
         backend:
           service:
