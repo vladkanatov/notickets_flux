@@ -20,14 +20,14 @@ spec:
   - host: notickets.ru
     http:
       paths:
-      - path: /api(/|$)(.*)
+      - path: /api/.*
         pathType: ImplementationSpecific
         backend:
           service:
             name: fastapi-service
             port:
               number: 80
-      - path: /(.*)
+      - path: /.*
         pathType: ImplementationSpecific
         backend:
           service:
