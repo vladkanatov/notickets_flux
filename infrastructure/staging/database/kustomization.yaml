@@ -3,7 +3,6 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - config.yaml
   - helmrelease.yaml
   - initdb.yaml
 namespace: mariadb
