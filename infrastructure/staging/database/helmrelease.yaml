@@ -20,7 +20,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: bitnami
-      version: 8.0.30
+      version: 11.1.11
   interval: 5m
   install:
     createNamespace: true
