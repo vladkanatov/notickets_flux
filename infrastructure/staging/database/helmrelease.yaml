@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: bitnami
-  namespace: mariadb
+  namespace: mysqldb
 spec:
   interval: 1h
   url: https://charts.bitnami.com/bitnami
@@ -10,56 +10,29 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: mariadb-cluster
-  namespace: mariadb
+  name: mysql
+  namespace: mysqldb
 spec:
-  interval: 5m
+  releaseName: mysql
   chart:
     spec:
-      chart: mariadb
-      version: 18.2.0
+      chart: mysql
       sourceRef:
         kind: HelmRepository
         name: bitnami
+      version: 8.0.30
+  interval: 5m
+  install:
+    createNamespace: true
   values:
-    architecture: replication
     auth:
-      rootPassword: 132465-Cs
-      database: notickets
-      username: lon8
-      password: 132465-Cs
-      replicationPassword: 132465-Cs
+      rootPassword: "132465-Cs"
+      database: "notickets"
+      username: "lon8"
+      password: "132465-Cs"
     primary:
       persistence:
         enabled: true
-        size: 6Gi
-      resources:
-        requests:
-          memory: 512Mi
-          cpu: 200m
-        limits:
-          memory: 1Gi
-          cpu: 500m
-      configuration: |
-        [mysqld]
-        character-set-server = utf8mb4
-        collation-server = utf8mb4_general_ci
-      livenessProbe:
-        enabled: false
-    secondary:
-      persistence:
-        enabled: true
-        size: 4Gi
-      resources:
-        requests:
-          memory: 512Mi
-          cpu: 200m
-        limits:
-          memory: 1Gi
-          cpu: 500m
-      configuration: |
-        [mysqld]
-        character-set-server = utf8mb4
-        collation-server = utf8mb4_general_ci
-      livenessProbe:
-        enabled: false
+        accessModes:
+          - ReadWriteOnce
+        size: 8Gi
