@@ -46,6 +46,154 @@ spec:
         collation-server = utf8mb4_general_ci
       livenessProbe:
         enabled: false
+      initdbScripts:
+        init.sql: |
+          CREATE TABLE IF NOT EXISTS cities (
+              id INTEGER PRIMARY KEY,
+              name VARCHAR(255),
+              latitude FLOAT,
+              longitude FLOAT
+          );
+
+          CREATE TABLE IF NOT EXISTS venues (
+              id INTEGER PRIMARY KEY AUTO_INCREMENT,
+              name VARCHAR(255),
+              description TEXT
+          );
+
+          CREATE TABLE IF NOT EXISTS categories (
+              id INTEGER PRIMARY KEY AUTO_INCREMENT,
+              category_name VARCHAR(255)
+          );
+
+          CREATE TABLE IF NOT EXISTS all_events (
+              id INTEGER PRIMARY KEY AUTO_INCREMENT,
+              name VARCHAR(255),
+              link VARCHAR(255),
+              parser VARCHAR(255),
+              venue_id INTEGER,
+              date DATETIME,
+              image_link VARCHAR(255),
+              FOREIGN KEY (venue_id) REFERENCES venues(id)
+          );
+
+          CREATE TABLE IF NOT EXISTS event_categories (
+              event_id INTEGER,
+              category_id INTEGER,
+              PRIMARY KEY (event_id, category_id),
+              FOREIGN KEY (event_id) REFERENCES all_events(id),
+              FOREIGN KEY (category_id) REFERENCES categories(id)
+          );
+
+          CREATE TABLE IF NOT EXISTS sites (
+              id INTEGER PRIMARY KEY AUTO_INCREMENT,
+              site VARCHAR(255)
+          );
+
+          CREATE TABLE IF NOT EXISTS event_sites (
+              event_id INTEGER,
+              site_id INTEGER,
+              PRIMARY KEY (event_id, site_id),
+              FOREIGN KEY (event_id) REFERENCES all_events(id),
+              FOREIGN KEY (site_id) REFERENCES sites(id)
+          );
+
+          CREATE TABLE IF NOT EXISTS grouped_events (
+              id INTEGER PRIMARY KEY,
+              event_id INTEGER,
+              description TEXT,
+              venue_id INTEGER,
+              FOREIGN KEY (event_id) REFERENCES all_events(id),
+              FOREIGN KEY (venue_id) REFERENCES venues(id)
+          );
+
+          CREATE TABLE IF NOT EXISTS city_venues (
+              city_id INTEGER,
+              venue_id INTEGER,
+              PRIMARY KEY (city_id, venue_id),
+              FOREIGN KEY (city_id) REFERENCES cities(id),
+              FOREIGN KEY (venue_id) REFERENCES venues(id)
+          );
+
+          INSERT INTO cities (id, name, latitude, longitude) VALUES
+              (1, 'Майкоп', 44.609826, 40.100652),
+              (2, 'Уфа', 54.7388, 55.9721),
+              (3, 'Улан-Удэ', 51.8335, 107.584),
+              (4, 'Горно-Алтайск', 51.9581, 85.9603),
+              (5, 'Махачкала', 42.9849, 47.5047),
+              (6, 'Назрань', 43.2256, 44.765),
+              (7, 'Нальчик', 43.498, 43.6122),
+              (8, 'Элиста', 46.3083, 44.2702),
+              (9, 'Черкесск', 44.2236, 42.0578),
+              (10, 'Петрозаводск', 61.7892, 34.3598),
+              (11, 'Сыктывкар', 61.6688, 50.8356),
+              (12, 'Йошкар-Ола', 56.6388, 47.8908),
+              (13, 'Саранск', 54.1808, 45.1869),
+              (14, 'Якутск', 62.0281, 129.7326),
+              (15, 'Владикавказ', 43.0367, 44.6678),
+              (16, 'Казань', 55.7963, 49.1088),
+              (17, 'Кызыл', 51.7191, 94.4377),
+              (18, 'Ижевск', 56.8527, 53.2064),
+              (19, 'Абакан', 53.7213, 91.4437),
+              (20, 'Грозный', 43.3178, 45.6985),
+              (21, 'Чебоксары', 56.1467, 47.2489),
+              (22, 'Барнаул', 53.3474, 83.7767),
+              (23, 'Краснодар', 45.0355, 38.9753),
+              (24, 'Красноярск', 56.0153, 92.8932),
+              (25, 'Владивосток', 43.1155, 131.8855),
+              (26, 'Ставрополь', 45.0448, 41.969),
+              (27, 'Хабаровск', 48.4827, 135.0838),
+              (28, 'Благовещенск', 50.2906, 127.5272),
+              (29, 'Архангельск', 64.5399, 40.5152),
+              (30, 'Астрахань', 46.3476, 48.0336),
+              (31, 'Белгород', 50.5954, 36.5873),
+              (32, 'Брянск', 53.2521, 34.3717),
+              (33, 'Владимир', 56.1291, 40.4066),
+              (34, 'Волгоград', 48.708, 44.514),
+              (35, 'Вологда', 59.2205, 39.8915),
+              (36, 'Воронеж', 51.6615, 39.2003),
+              (37, 'Иваново', 56.9995, 40.9728),
+              (38, 'Иркутск', 52.2869, 104.305),
+              (39, 'Калининград', 54.7104, 20.4522),
+              (40, 'Калуга', 54.5144, 36.2612),
+              (41, 'Петропавловск-Камчатский', 53.0451, 158.6483),
+              (42, 'Кемерово', 55.3552, 86.0867),
+              (43, 'Киров', 58.6035, 49.6675),
+              (44, 'Кострома', 57.7679, 40.9269),
+              (45, 'Курган', 55.441, 65.3411),
+              (46, 'Курск', 51.7303, 36.1926),
+              (47, 'Санкт-Петербург', 59.9343, 30.3351),
+              (48, 'Липецк', 52.6109, 39.5948),
+              (49, 'Магадан', 59.5616, 150.8113),
+              (50, 'Красногорск', 55.8236, 37.3291),
+              (51, 'Москва', 55.7558, 37.6173),
+              (52, 'Мурманск', 68.9733, 33.075),
+              (53, 'Нижний Новгород', 56.3269, 44.0059),
+              (54, 'Великий Новгород', 58.5215, 31.2755),
+              (55, 'Новосибирск', 55.0084, 82.9357),
+              (56, 'Омск', 54.9885, 73.3242),
+              (57, 'Оренбург', 51.7875, 55.101),
+              (58, 'Орёл', 52.9702, 36.064),
+              (59, 'Пенза', 53.1951, 45.018),
+              (60, 'Пермь', 58.0105, 56.2294),
+              (61, 'Псков', 57.8194, 28.331),
+              (62, 'Ростов-на-Дону', 47.2357, 39.7015),
+              (63, 'Рязань', 54.6296, 39.7426),
+              (64, 'Самара', 53.2415, 50.2212),
+              (65, 'Саратов', 51.5331, 46.0342),
+              (66, 'Южно-Сахалинск', 46.9592, 142.738),
+              (67, 'Екатеринбург', 56.8389, 60.6057),
+              (68, 'Смоленск', 54.7826, 32.0454),
+              (69, 'Тамбов', 52.7213, 41.4523),
+              (70, 'Тверь', 56.8585, 35.9119),
+              (71, 'Томск', 56.4847, 84.9487),
+              (72, 'Тула', 54.1921, 37.6156),
+              (73, 'Тюмень', 57.153, 65.5343),
+              (74, 'Ульяновск', 54.3142, 48.4031),
+              (75, 'Челябинск', 55.1644, 61.4368),
+              (76, 'Ярославль', 57.6261, 39.8845),
+              (77, 'Севастополь', 44.6167, 33.5254),
+              (78, 'Симферополь', 44.9482, 34.1001);
     secondary:
       persistence:
         enabled: true
