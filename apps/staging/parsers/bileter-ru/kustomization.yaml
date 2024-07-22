@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - config.yaml
-  - bileter-ru.yaml
+  # - bileter-ru.yaml
 namespace: notickets
