@@ -7,6 +7,6 @@ spec:
     app: fastapi-app
   ports:
     - protocol: TCP
-      port: 8000
+      port: 80
       targetPort: 8000
   type: ClusterIP  # Используйте NodePort или ClusterIP в зависимости от вашей конфигурации
