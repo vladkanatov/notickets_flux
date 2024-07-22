@@ -5,11 +5,6 @@ metadata:
 spec:
   template:
     spec:
-      # Добавляем ожидание доступности MariaDB кластера
-      # initContainers:
-      # - name: wait-for-mariadb
-      #   image: alpine:latest
-      #   command: ["sh", "-c", "until nc -z -v -w30 mariadb-cluster-primary.mariadb.svc.cluster.local 3306; do echo 'Waiting for MariaDB cluster to start...'; sleep 5; done"]
       containers:
       - name: mysql-client
         image: lon8/notickets_initdb:1.4
